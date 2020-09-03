@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const cache = require('gulp-cache');
-const { src, dest } = require('gulp');
+const src = require('gulp');
 const imagemin = require('gulp-imagemin');
 const less = require('gulp-less');
 const browserSync = require('browser-sync').create();
@@ -14,9 +14,8 @@ function minify() {
 }
 
 function compileLess() {
-    return src('less/**/*.less')
+    return src('./less/**/*.less')
         .pipe(less())
-        .pipe(dest('css'))
         .pipe(browserSync.stream());
 }
 
@@ -29,7 +28,7 @@ function watch() {
     
     gulp.watch('./media/**', minify)
     gulp.watch('./less/**/*.less', compileLess)
-    gulp.watch('./*').on('change', browserSync.reload)
+    gulp.watch('./*.html').on('change', browserSync.reload)
 }
 
 exports.watch = watch;
