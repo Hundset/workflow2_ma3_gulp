@@ -14,7 +14,7 @@ function minify() {
 }
 
 function compileLess() {
-    return src('./less/**/*.less')
+    return gulp.src('./less/**/*.less')
         .pipe(less())
         .pipe(browserSync.stream());
 }
